@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Tugas - 18</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- cssnya datatable jquery -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Tugas 18</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " href="product.html">
+          <i class="bi bi-plus-square"></i>
+          <span>Product</span>
+        </a>
+      </li><!-- End Product Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Product</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section product">
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+              <div class="card-body">
+                <div class="table-responsive ">
+                    <h5 class="card-title">Datatables Product</h5>
+                    <p>Silahkan cek bahan produk yang tersimpan dalam database Anda!</p>
+                    <button title="Tambah Produk" id="btnTambah" type="button" class="btn btn-outline-primary"><i class="bi bi-plus-square me-2"></i>Tambah Produk</button>
+                    <!-- Table with stripped rows -->
+                    <table class="table" id="tabel-produk">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Nama Produk</th>
+                            <th scope="col">Kode Produk</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Kuantitas</th>
+                            <th scope="col">Deskripsi</th>
+                        <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Create Produk Modal -->
+    <div class="modal fade" id="create-product" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah Produk</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form-create-produk">
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="category_id">Kategori <span class="text-danger">*</span></label>
+                      <select class="form-control" name="category_id" autofocus autocomplete="off">
+                          <option value="1">Pilih kategori</option>
+                      </select>
+                      <div class="invalid-feedback category_id_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="product_name">Nama Produk <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="product_name" id="product_name" required autofocus autocomplete="off">
+                      <div class="invalid-feedback product_name_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="product_code">Kode Produk <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="product_code" id="product_code" required autofocus autocomplete="off">
+                      <div class="invalid-feedback product_code_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="price">Harga <span class="text-danger">*</span></label>
+                      <input type="number" min="0" class="form-control" name="price" id="price" required autofocus autocomplete="off">
+                      <div class="invalid-feedback price_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="quantity">Kuantitas <span class="text-danger">*</span></label>
+                      <input type="number" min="0" class="form-control" name="quantity" id="quantity" required autofocus autocomplete="off">
+                      <div class="invalid-feedback quantity_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="description">Deskripsi <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="description" id="description" required autofocus autocomplete="off">
+                      <div class="invalid-feedback description_error"></div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+            </div>
+        </div>
+    </div><!-- End Large Modal-->
+  
+    <!-- Edit Produk Modal -->
+    <div class="modal fade" id="edit-product" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Edit Produk</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="form-edit-produk">
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="category_id">Kategori <span class="text-danger">*</span></label>
+                      <select class="form-control" name="category_id" required autofocus autocomplete="off">
+                          <option value="">Pilih kategori</option>
+                      </select>
+                      <div class="invalid-feedback category_id_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="product_name">Nama Produk <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="product_name" id="product_name" required autofocus autocomplete="off">
+                      <div class="invalid-feedback product_name_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="product_code">Kode Produk <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="product_code" id="product_code" required autofocus autocomplete="off">
+                      <div class="invalid-feedback product_code_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="price">Harga <span class="text-danger">*</span></label>
+                      <input type="number" min="0" class="form-control" name="price" id="price" required autofocus autocomplete="off">
+                      <div class="invalid-feedback price_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="quantity">Kuantitas <span class="text-danger">*</span></label>
+                      <input type="number" min="0" class="form-control" name="quantity" id="quantity" required autofocus autocomplete="off">
+                      <div class="invalid-feedback quantity_error"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                      <div class="form-group">
+                      <label for="description">Deskripsi <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="description" id="description" required autofocus autocomplete="off">
+                      <div class="invalid-feedback description_error"></div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+          </div>
+      </div>
+  </div><!-- End Large Modal-->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Ando Zamhariro Royan | FSWD | ID:6711301</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="">Ando Zamhariro Royan</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+  <!-- sw2 -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+<script>
+  var dataProduk;
+  var table;
+  $(document).ready(function() {   
+
+    // Data hardcode produk sample
+    var dataProduk = [
+        { product_id: 1, product_name: 'Kacang', product_code: 'bH3a33N', price: 100, quantity: 5, description: 'Deskripsi Kacang' },
+        { product_id: 2, product_name: 'Cabe', product_code: 'bH2a22N', price: 200, quantity: 10, description: 'Deskripsi Cabe' },
+        { product_id: 3, product_name: 'Minyak', product_code: 'bH1a11N', price: 300, quantity: 15, description: 'Deskripsi Minyak' },
+        { product_id: 4, product_name: 'Gula', product_code: 'bH4a44N', price: 400, quantity: 20, description: 'Deskripsi Gula' },
+        { product_id: 5, product_name: 'Susu', product_code: 'bH5a55N', price: 500, quantity: 25, description: 'Deskripsi Susu' },
+        { product_id: 6, product_name: 'Teh', product_code: 'bH6a66N', price: 600, quantity: 30, description: 'Deskripsi Teh' },
+        { product_id: 7, product_name: 'Garam', product_code: 'bH7a77N', price: 700, quantity: 35, description: 'Deskripsi Garam' },
+        { product_id: 8, product_name: 'Merica', product_code: 'bH8a88N', price: 800, quantity: 40, description: 'Deskripsi Merica' },
+        { product_id: 9, product_name: 'Kecap', product_code: 'bH9a99N', price: 900, quantity: 45, description: 'Deskripsi Kecap' },
+        { product_id: 10, product_name: 'Bawang', product_code: 'bH10a100N', price: 1000, quantity: 50, description: 'Deskripsi Bawang'}
+    ];
+
+
+    // Menambahkan data ke tabel menggunakan DataTables setelah modal ditampilkan
+    table = $('#tabel-produk').DataTable({
+        paging: true,
+        lengthChange: false,
+        searching: true,
+        ordering: true,
+        info: true,
+        autoWidth: false,
+        responsive: false,
+        ajax:{
+          url: "http://localhost/tugas19test/index.php/api/product",
+          type: "GET",
+        },
+        columnDefs: [
+          {
+            targets: 0,
+            data: null,
+            className: 'text-center align-middle',
+            render: function(data, type, row, meta) {
+              return meta.row + 1;
+            }
+          },
+          {
+            targets: 1,
+            className: 'text-center align-middle',
+            render: function(data, type, row, meta) {
+              return row.product_name;
+            }
+          },
+          {
+            targets: 2,
+            className: 'text-center align-middle',
+            render: function(data, type, row, meta) {
+              return row.product_code;
+            }
+          },
+          {
+            targets: 3,
+            className: 'text-center align-middle',
+            render: function(data, type, row, meta) {
+              return row.price;
+            }
+          },
+          {
+            targets: 4,
+            className: 'text-center align-middle',
+            render: function(data, type, row, meta) {
+              return row.quantity;
+            }
+          },
+          {
+            targets: 5,
+            className: 'text-center align-middle',
+            render: function(data, type, row, meta) {
+              return row.description;
+            }
+          },
+          {
+            targets: 6,
+            className: 'text-center align-middle',
+            render: function(data, type, row, meta) {
+              return `<button type="button" title="Edit" class="btn btn-warning mb-1 btnEdit" id="btnEdit" data-kode="${row.Kode}" data-nama="${row.Nama}"><i class="bi bi-pencil"></i></button><br>
+              <button type="button" title="Hapus" class="btn btn-danger btnHapus" id="btnHapus" data-kode="${row.Kode}" data-nama="${row.Nama}"><i class="bi bi-trash"></i></button>`;
+            }
+          }
+        ],
+    });
+
+    // create produk
+    $('#btnTambah').click(function() {
+      $('#create-product').modal('show'); // Menampilkan modal saat tombol diklik
+
+      $.ajax({
+        type: "GET",
+        url: 'http://localhost/tugas19test/api/category',
+        dataType: "json",
+        success: function(response){
+          response.map(kategori=>{
+            $('select[name="category_id"]').append(`
+                  <option value="${kategori.category_id}">${kategori.category_name}</option>
+                  `);
+          });
+        },
+      });
+
+      // Submit Form Create artikel
+      $('#form-create-produk').submit(function(e) {
+        e.preventDefault();
+
+        var formData = new FormData($("#form-create-produk")[0]);
+
+        $.ajax({
+          type: "POST",
+          url: "http://localhost/tugas19test/api/product",
+          data: formData,
+          processData: false,
+          contentType: false,
+          beforeSend: function() {
+          $('*').removeClass('is-invalid');
+
+          },
+          success: function(response) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Berhasil!',
+              text: 'Berhasil menambah data produk!',
+            })
+            table.ajax.reload();
+            $('#create-product').modal('hide');
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+
+          switch (xhr.status) {
+              case 422:
+              var errors = xhr.responseJSON.meta.message;
+              var message = '';
+              $.each(errors, function(key, value) {
+                  message = value;
+                  $('*[name="' + key + '"]').addClass('is-invalid');
+                  $('.invalid-feedback.' + key + '_error').html(value);
+              });
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Gagal!',
+                  text: message,
+              })
+              break;
+              case 409:
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Gagal!',
+                  text: xhr.responseJSON.meta.message,
+              })
+              break;
+              case 500:
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Gagal!',
+                  text: xhr.responseJSON.meta.message,
+              })
+              break;
+              case 413:
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Gagal!',
+                  text: "Ukuran file terlalu besar, maksimal 5MB.",
+              })
+              break;
+              default:
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Gagal!',
+                  text: 'Terjadi kesalahan!',
+              })
+              break;
+          }
+          }
+      });
+      });
+
+      $('#create-product').on('hidden.bs.modal', function(){
+        $("#form-create-produk select[name=category_id]").empty();
+        $("#form-create-produk input").val('');
+    });
+
+    });
+
+    var data;
+    $('#tabel-produk tbody').on('click', '.btnEdit', function() {
+      $('#edit-product').modal('show'); // Menampilkan modal saat tombol diklik
+
+      data = table.row($(this).parents('tr')).data();
+
+      $.ajax({
+        type: "GET",
+        url: 'http://localhost/tugas19test/api/category',
+        dataType: "json",
+        success: function(response){
+          response.map(kategori=>{
+            $('select[name="category_id"]').append(`
+              <option value="${kategori.category_id}">${kategori.category_name}</option>
+              `);
+          });
+        },
+      });
+
+      $('input[name="product_name"]').val(data.product_name);
+      $('input[name="product_code"]').val(data.product_code);
+      $('input[name="price"]').val(data.price);
+      $('input[name="quantity"]').val(data.quantity);
+      $('input[name="description"]').val(data.description);
+
+      $('#edit-product').on('hidden.bs.modal', function(){
+        $("#form-edit-produk select[name=category_id]").empty();
+        $("#form-create-produk input").val('');
+    })
+
+    });
+
+    // Submit Form Edit artikel
+    $('#form-edit-produk').submit(function(e) {
+      e.preventDefault();
+
+      var formData = $(this).serialize(); // Mengambil data formulir dalam format URL-encoded
+      var editId = data.product_id;
+
+      var url = "http://localhost/tugas19test/api/product/" + editId;
+
+      updateProduct(url,formData);
+
+      });
+
+    $('#tabel-produk tbody').on('click', '.btnHapus', function() {
+      var data = table.row($(this).parents('tr')).data();
+
+      var url = 'http://localhost/tugas19test/api/product/' + data.product_id;
+
+      $.ajax({
+        type: "DELETE",
+        url: url,
+        success: function(response) {
+          Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: 'Product deleted successfully!',
+              })
+          table.ajax.reload();
+        },
+        error: function(error) {
+          Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Product delete failed!',
+              })
+          table.ajax.reload();
+        }
+      });
+
+    })
+
+  })
+
+  function updateProduct(url,formData){
+    console.log(url);
+    console.log(formData);
+    $.ajax({
+      type: "PUT",
+      url: url,
+      data: formData,
+      processData: false,
+      contentType: false,
+      beforeSend: function() {
+      $('*').removeClass('is-invalid');
+
+      },
+      success: function(response) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil!',
+          text: 'Berhasil ubah data produk!',
+        })
+        table.ajax.reload();
+        $('#edit-product').modal('hide');
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+          var errorMessage = 'Terjadi kesalahan!';
+          
+          switch (xhr.status) {
+              case 422:
+                  var errors = xhr.responseJSON.meta.message;
+                  errorMessage = '';
+                  $.each(errors, function(key, value) {
+                      errorMessage = value;
+                      $('*[name="' + key + '"]').addClass('is-invalid');
+                      $('.invalid-feedback.' + key + '_error').html(value);
+                  });
+                  break;
+              case 409:
+              case 500:
+                  errorMessage = xhr.responseJSON.meta.message || 'Terjadi kesalahan pada server.';
+                  break;
+              case 413:
+                  errorMessage = 'Ukuran file terlalu besar, maksimal 5MB.';
+                  break;
+          }
+
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal!',
+              text: errorMessage,
+          });
+      }
+  });
+  }
+</script>
+
+</html>

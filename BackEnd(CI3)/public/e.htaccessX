@@ -1,0 +1,26 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+######################
+## Handling Options for the CORS
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [L,R=204]
+
+###################
+## Add custom headers
+Header set X-Content-Type-Options "nosniff"
+Header set X-XSS-Protection "1; mode=block"
+   # Always set these headers for CORS.
+Header always set Access-Control-Max-Age 1728000
+Header always set Access-Control-Allow-Origin: "*"
+Header always set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+Header always set Access-Control-Allow-Headers: "Authorization, DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,C$
+Header always set Access-Control-Allow-Credentials true
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php82” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

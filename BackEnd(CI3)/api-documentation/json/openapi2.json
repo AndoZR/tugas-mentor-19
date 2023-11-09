@@ -1,0 +1,552 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Tugas-15 Copy",
+    "contact": {}
+  },
+  "host": "ando-jwt-api.christyoga.my.id",
+  "basePath": "/api",
+  "securityDefinitions": {
+    "Bearer": {
+      "in": "header",
+      "type": "apiKey",
+      "name": "Authorization"
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user/register": {
+      "post": {
+        "summary": "REGISTER",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "REGISTER",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "summary": "LOGIN",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "LOGIN",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "summary": "LOGOUT",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "LOGOUT",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/category": {
+      "get": {
+        "summary": "READ CATEGORY",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "READCATEGORY",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "ADD CATEGORY",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "ADDCATEGORY",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "category_name",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/category/{id}": {
+      "get": {
+        "summary": "SPECIFIC CATEGORY",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "SPECIFICCATEGORY",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "UPDATE CATEGORY",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "UPDATECATEGORY",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "category_name",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "DELETE CATEGORY",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "DELETECATEGORY",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/product": {
+      "get": {
+        "summary": "READ PRODUCT",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "READPRODUCT",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "ADD PRODUCT",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "ADDPRODUCT",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "product_name",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "category_id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "quantity",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/product/{id}": {
+      "get": {
+        "summary": "SPECIFIC PRODUCT",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "SPECIFICPRODUCT",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "UPDATE PRODUCT",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "UPDATEPRODUCT",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "product_name",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "category_id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "quantity",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "DELETE PRODUCT",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "DELETEPRODUCT",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Authentication"
+    },
+    {
+      "name": "Category"
+    },
+    {
+      "name": "Product"
+    }
+  ]
+}
